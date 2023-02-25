@@ -3,7 +3,7 @@
 
 > This is a web application that uses the Atelier API to provide customers with a user friendly interface. The user interface provides relevant information about a product in the Atelier retail catalog. It features the product's details, ratings and reviews, and a related questions and answers section.
 
-![Phase 3 deployment screenshot](https://user-images.githubusercontent.com/103070104/211505320-e8d21c9f-325b-45ef-82c7-590b1f881e2c.jpg)
+![Phase 3 complete widget](https://user-images.githubusercontent.com/103070104/221342945-deb60068-640a-4122-8308-776f0880b4c0.png)
 
 ## Product Detail Page
 
