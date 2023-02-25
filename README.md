@@ -1,5 +1,5 @@
 
-# front-end-capstone
+# Atelier Ecommerce
 
 > This is a web application that uses the Atelier API to provide customers with a user friendly interface. The user interface provides relevant information about a product in the Atelier retail catalog. It features the product's details, ratings and reviews, and a related questions and answers section.
 
