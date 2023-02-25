@@ -5,6 +5,10 @@
 
 ![Project demo](https://user-images.githubusercontent.com/103070104/221344402-4e2d0a83-7b24-48c0-bed2-5c5638958bdc.mp4)
 
+
+https://user-images.githubusercontent.com/103070104/221344438-2b2323e7-25db-4ca7-8dc7-f38953a7e5fc.mp4
+
+
 ## Product Detail Page
 
 Show the relevant information for a single product in the catalog.<br>
