@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FaRegStar, FaPlus, FaHeart } from 'react-icons/fa';
 
 import ProductInfo from './ProductInfo.jsx';
@@ -11,10 +10,8 @@ import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
 
-
 import {calculateRating, getTotalQuantity} from '../../helpers.js';
 import "./Overview.scss";
-
 
 class Overview extends React.Component {
   constructor(props) {
@@ -69,7 +66,6 @@ class Overview extends React.Component {
     this.setState({selectedQuantity})
   }
 
-
   addToOutfit() {
     const {id, name, category, slogan, description, default_price} = this.props.product;
     const product = {
@@ -118,7 +114,6 @@ class Overview extends React.Component {
     this.props.interaction('Add to bag button', 'Overview')
   }
 
-
   componentDidMount() {
     this.getStyles()
       .then(() => {
@@ -134,12 +129,6 @@ class Overview extends React.Component {
         this.props.getAllCurrentProductInfo(product);
       })
   }
-
-  // componentDidMount() {
-  //   // this.getRating();
-  //   this.getStyles();
-  // }
-
 
   //Getting the new style list after the new product is passed to props
   componentDidUpdate(prevProps, prevState) {
@@ -160,24 +149,6 @@ class Overview extends React.Component {
       })
     }
   }
-
-  // //Getting the new style list after the new product is passed to props
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.product.id !== this.props.product.id) {
-  //     this.selectSizeMessageOff();  //Turn off the select size message in case the message was on in previous product props
-  //     this.getStyles();
-  //     this.setState({
-  //       favorite: this.props.outfit.includes(this.props.product.id),
-  //     })
-  //   }
-  //   if (JSON.stringify(prevProps.outfit) !==  JSON.stringify(this.props.outfit)) {
-  //     this.setState({
-  //       favorite: this.props.outfit.includes(this.props.product.id),
-  //     })
-  //   }
-  // }
-
-
 
   render() {
     const {id, name, category, slogan, description, default_price} = this.props.product;
@@ -211,12 +182,6 @@ class Overview extends React.Component {
                       ? <div className='button' onClick={this.removeFromOutfit.bind(this)}><FaHeart className='button-icon heart-icon' /></div>
                       : <div className='button' onClick={this.addToOutfit.bind(this)}><FaRegStar className='button-icon star-favorite-icon' /></div>
                   }
-                  {/* <div className='button' onClick={this.toggleOutfit.bind(this)}>
-                    {this.state.favorite
-                      ? <FaHeart className='button-icon heart-icon' />
-                      : <FaRegStar className='button-icon star-favorite-icon' />
-                    }
-                  </div> */}
                 </div>
               </div>
             </div>
