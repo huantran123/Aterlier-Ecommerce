@@ -17,7 +17,6 @@ const StarRating = (props) => {
             className={index <= (hover || rating) ? "invisi-btn on" : "invisi-btn off"}
             onClick={() => {
               setRating(index);
-              //setClick({...clicked, clicked[rating]:true});
               setClick(true);
               props.getRating(index);
               }}
