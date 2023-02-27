@@ -15,6 +15,7 @@ const UploadPics = (props) => {
       setImages(newImages);
     }
   }
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     return axios.post('/upload', {images: images})
@@ -27,6 +28,7 @@ const UploadPics = (props) => {
         props.toggleUpload();
       })
   }
+  
   const previewFile = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -34,6 +36,7 @@ const UploadPics = (props) => {
       setImages(images.concat(reader.result));
     }
   }
+  
   const handleChange = (file) => {
     setFiles(files.concat(file));
     previewFile(file);
