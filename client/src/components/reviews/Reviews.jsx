@@ -7,14 +7,14 @@ import Product from './Product.jsx';
 import {reviewsSort}from './helper-revs.js';
 import SearchBar from './SearchBar.jsx';
 import { searchReviews } from './helper-revs.js';
+
 const Reviews = (props) => {
-  //const [newList, setList] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [newList, setList] = useState([]);
   const initToggle = {5: false, 4: false, 3: false, 2: false, 1: false};
   const [toggle, setToggle] = useState(initToggle);
+  
   //handle 5 rating star been clicked
-
   const handleStarClick = (reviews, num) => {
     props.interaction(`${num} Star Rating`, 'reviews');
 
@@ -31,6 +31,7 @@ const Reviews = (props) => {
     }
     setToggle({...toggle, [num]:!toggle[num]});
   }
+  
   useEffect(() => {
     if (newList.length) {
       setReviews(newList);
@@ -41,6 +42,7 @@ const Reviews = (props) => {
 
   // clear all the filter
   const [clear, setClear] = useState(false);
+  
   const clearFilter =  () => {
     setToggle(initToggle);
     setReviews(props.state.reviews);
@@ -48,8 +50,10 @@ const Reviews = (props) => {
     setList([]);
     setKeyWords('');
   }
+  
   // handle the search input change
   const [keyWords, setKeyWords] = useState('');
+  
   const handleSearch = (word) => {
     setKeyWords(word);
   }
@@ -65,7 +69,6 @@ const Reviews = (props) => {
       setReviews(searchList);
     }
   },[keyWords, newList])
-
 
   return  (
     <div ref={props.scrollToReviews} className="widget">
@@ -83,6 +86,5 @@ const Reviews = (props) => {
     </div>
   )
 }
-
 
 export default Reviews;
