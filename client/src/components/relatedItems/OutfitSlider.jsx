@@ -20,18 +20,11 @@ const OutfitSlider = (props) => {
       setShowLeft(false);
     }
   }
-
-
-    useEffect(() => {
-      var products = extractLocalStorage(localStorage);
-      setItems(products);
-    }, [props.outfit]);
-
-    // useEffect(() => {
-    //   setItems(Object.keys(localStorage));
-    // }, [props.outfit]);
-
-
+  
+  useEffect(() => {
+    var products = extractLocalStorage(localStorage);
+    setItems(products);
+  }, [props.outfit]);
 
   const slideRight = () => {
     var slider = document.getElementById('outfitSlider');
@@ -45,7 +38,6 @@ const OutfitSlider = (props) => {
     }
   }
 
-
   return (
     <div id="main-slider-container" >
       <MdChevronLeft size={38} className={showLeft ? "outfit-slider-icon-left" : "slider-icon-invisible"}  onClick={outfitSlideLeft} />
@@ -56,14 +48,8 @@ const OutfitSlider = (props) => {
             <OutfitCard product={items[item]} key={index} deleteItem={props.delete} />
           )
         })}
-        {/* {items.map((item, index) => {
-          return (
-            <OutfitCard product={item} key={index} deleteItem={props.delete} />
-          )
-        })}  */}
       </div>
       <MdChevronRight size={38} className={showRight ? "outfit-slider-icon-right" : "slider-icon-invisible"} onClick={slideRight} />
-
     </div>
   )
 }
