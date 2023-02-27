@@ -5,11 +5,13 @@ const StarRating = (props) => {
   const [hover, setHover] = useState(0);
   const [clicked, setClick] = useState(false);
   const presents = ["Poor", "Fair", "Average", "Good", "Great"];
+  
   return (
     <div className="star-rating">
       {clicked && <span className="small_font">{rating} Star - {presents[rating-1]}</span>}
       {[...Array(5)].map((value, index) => {
         index += 1;
+        
         return (
           <button
             type="button"
@@ -25,7 +27,6 @@ const StarRating = (props) => {
           >
             <span className="star" style={{margin:"3px"}}>&#9733;</span>
           </button>
-
         )
       })}
     </div>
