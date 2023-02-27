@@ -4,9 +4,9 @@ const FactorEntry = (props) => {
   const [factor, setFactor] = useState(0);
   const [select, setSelect] = useState(false);
   const [index, setIndex] = useState(0);
+  
   const handleOptionChange = (e) => {
     setFactor(e.target.value);
-    //setIndex(index + 1);
     props.getFactor({name: props.explain[0], value: e.target.value})
   }
 
