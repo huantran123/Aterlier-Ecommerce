@@ -1,7 +1,6 @@
 import React from 'react'
 import { useRef, useState } from "react";
 import styled from "styled-components";
-// import "./styles.css";
 
 const Container = styled.div``;
 
@@ -21,31 +20,17 @@ const MaxZoomView = (props) => {
   const [opacity, setOpacity] = useState(1);
   const [offset, setOffset] = useState({ left: 0, top: 0 });
 
-  // const handleMouseEnter = () => {
-  //   setOpacity(1);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setOpacity(0);
-  // };
-
   const handleMouseMove = (e) => {
     const targetRect = targetRef.current.getBoundingClientRect();
     const sourceRect = sourceRef.current.getBoundingClientRect();
     const containerRect = containerRef.current.getBoundingClientRect();
 
     const xRatio = (targetRect.width - containerRect.width) / sourceRect.width;
-    const yRatio =
-      (targetRect.height - containerRect.height) / sourceRect.height;
+    const yRatio = (targetRect.height - containerRect.height) / sourceRect.height;
 
-    const left = Math.max(
-      Math.min(e.pageX - sourceRect.left, sourceRect.width),
-      0
-    );
-    const top = Math.max(
-      Math.min(e.pageY - sourceRect.top, sourceRect.height),
-      0
-    );
+    const left = Math.max(Math.min(e.pageX - sourceRect.left, sourceRect.width), 0);
+    
+    const top = Math.max(Math.min(e.pageY - sourceRect.top, sourceRect.height), 0);
 
     setOffset({
       left: left * -xRatio,
@@ -57,8 +42,6 @@ const MaxZoomView = (props) => {
       <Container
         className='minus-cursor'
         ref={containerRef}
-        // onMouseEnter={handleMouseEnter}
-        // onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         onClick={props.toggleZoom}
         style={{
@@ -80,7 +63,8 @@ const MaxZoomView = (props) => {
             height:'600px',
             objectFit:'contain',
             opacity: 0,
-          }} />
+          }} 
+        />
         <Target
           ref={targetRef}
           alt="target"
