@@ -34,7 +34,6 @@ class RelatedItemCard extends React.Component {
   getProduct() {
     return axios.get(`/products/${this.props.product}`)
     .then(response => {
-      // console.log('response///', response.data);
       this.setState({
         product: response.data
       })
@@ -44,8 +43,6 @@ class RelatedItemCard extends React.Component {
   getPicture() {
     return axios.get(`/products/${this.props.product}/styles`)
     .then(response => {
-      //  console.log('styles///', response.data);
-      //  console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
        var selectedStyle = response.data.results[0];
        for (var style of response.data.results) {
           if (style['default?']) {
@@ -75,6 +72,7 @@ class RelatedItemCard extends React.Component {
       })
     })
   }
+  
  componentDidUpdate(prevProps, prevState){
   if(prevProps.product != this.props.product) {
     let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interaction";
@@ -87,8 +85,6 @@ class RelatedItemCard extends React.Component {
     })
   }
  }
-
-
 
   showModal = () => {
     this.setState({show: true});
@@ -106,27 +102,22 @@ class RelatedItemCard extends React.Component {
 
 
   render() {
-   // console.log('product#######', this.state.product);
-
     return (
-        <div className="card pointer-cursor" >
-            <a href="#">
-            <img className='card-image' alt="ralatedImage" src={this.state.photo} onClick={this.selectProduct.bind(this)} />
-            </a>
-            <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
-            <Modal show={this.state.show} hideModal={this.hideModal} mainProduct={this.props.mainProduct} product={this.state.product} mainRating={this.props.mainRating} comRating={this.state.rating}/>
-            <div className='cardbody' onClick={(e) => {this.selectProduct(e)}}>
-            <p className='category'>{this.state.product.category}</p>
-            <p className='name'>{this.state.product.name}</p>
-            <p className='price'>${this.state.product.default_price}</p>
-            <Star rating={roundNearQtr(this.state.rating)} />
-            </div>
-
+      <div className="card pointer-cursor" >
+        <a href="#">
+        <img className='card-image' alt="ralatedImage" src={this.state.photo} onClick={this.selectProduct.bind(this)} />
+        </a>
+        <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
+        <Modal show={this.state.show} hideModal={this.hideModal} mainProduct={this.props.mainProduct} product={this.state.product} mainRating={this.props.mainRating} comRating={this.state.rating}/>
+        <div className='cardbody' onClick={(e) => {this.selectProduct(e)}}>
+          <p className='category'>{this.state.product.category}</p>
+          <p className='name'>{this.state.product.name}</p>
+          <p className='price'>${this.state.product.default_price}</p>
+          <Star rating={roundNearQtr(this.state.rating)} />
         </div>
-
-
+      </div>
     )
-    }
+  }
 }
 
 export default RelatedItemCard;
