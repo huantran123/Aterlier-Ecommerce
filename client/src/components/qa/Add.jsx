@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AddQuestion from './AddQuestion.jsx'
 
 const Add = (props) => {
-
   const [addQuestion, setAddQuestion] = useState(false);
 
   const closeModal = () => {
