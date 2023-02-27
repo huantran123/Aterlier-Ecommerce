@@ -4,6 +4,7 @@ import Star from '../Star/Star.jsx';
 import {roundNearQtr} from '../../helpers.js'
 import axios from 'axios';
 import AlertMessage from './addReview/AlertMessage.jsx';
+
 const ReviewEntry = (props) => {
   const [helpful, setHelp] = useState(props.review.helpfulness);
   const [clicked, setClick] = useState(false);
@@ -13,17 +14,19 @@ const ReviewEntry = (props) => {
   const [showReview, setShowReview] = useState(true);
   const [helpClick, setHelpClick] = useState(false);
   const grayOrNot = !showReview ? "rev-gray" : "rev";
+  
   const sendToServer = (review_id) => {
     return axios.put(`/reviews/${review_id}/helpful`)
       .then(() => {setClick(true)})
   }
+  
   const sendReport = (review_id) => {
     return axios.put(`/reviews/${review_id}/report`)
      .then(() => {
       setShowReview(false);
      })
-
   }
+  
   return (
     <li>
       <div className={grayOrNot} role="reviews">
@@ -106,7 +109,6 @@ const ReviewEntry = (props) => {
           <hr/>
         </div>
       </div>
-
     </li>
   )
 }
