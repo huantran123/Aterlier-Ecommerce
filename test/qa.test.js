@@ -27,22 +27,3 @@ describe('QA Component Test', () => {
     expect(screen.getByText("QUESTIONS & ANSWERS")).toBeDefined();
   });
 });
-
-// describe('QA List Test', () => {
-//   test('Should render List', () => {
-//     render(<QAList questions={mockData.questions} />);
-//   });
-// });
-
-// describe('Questions List Test', () => {
-//   test('Should render Questions List', () => {
-//     render(<QAList product={mockData.product} questions={mockData.questions} />);
-//     expect(getAllByText('Report', {exact: false})).toHaveLength(2);
-//   });
-//   test('after clicking "More Questions" button, it should render the remaining questions', async() => {
-//     let list = render(<QAList questions={mockData.questions} product={mockData.product} />);
-//     fireEvent.click(screen.getByText('MORE QUESTIONS'));
-//     expect(list.getAllByRole('questions', {exact: false})).toHaveLength(4);
-//   })
-// });
-
