@@ -1,7 +1,5 @@
 import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 import StyleCircle from './StyleCircle.jsx';
 
@@ -37,7 +35,6 @@ class StylesSection extends React.Component {
       <div className='styles-container'>
         <div className='closest-flex'>
           <span className='bold-text'>STYLE</span>
-          {/* <FontAwesomeIcon icon={faChevronRight} /> */}
           <FaChevronRight />
           <span className='style-name'>{this.state.selectedStyleName.toUpperCase()}</span>
         </div>
