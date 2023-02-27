@@ -16,9 +16,6 @@ const SearchBar = (props) => {
         <FaSistrix/>
       </IconContext.Provider>
     </>
-
-
-
   )
 }
 
