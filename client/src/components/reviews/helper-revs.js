@@ -1,5 +1,3 @@
-
-
 export const reviewsSort = (reviews, key) => {
   let reviewsMap = {};
   reviews.forEach(review => {
