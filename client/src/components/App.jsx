@@ -11,7 +11,6 @@ import AddReview from './reviews/addReview/AddReview.jsx';
 import {calculateRating, reviewsCount, extractLocalStorage} from '../helpers.js'
 import OutfitCard from './relatedItems/OutfitCard.jsx';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -44,7 +43,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //localStorage.clear();
     let path = location.pathname;
     if (path === '/') {
       this.init(71697);
@@ -93,11 +91,6 @@ class App extends React.Component {
   selectProduct(product) {
     location.pathname = ('/' + product.id.toString());
     this.init(product.id);
-    // this.setState({product}, () => {
-    //   console.log('this.state: ', this.state.product);
-    //   this.getReviewsMeta();
-    //   this.getReviews({count: this.state.reviewsLength});
-    // })
   }
 
   // Open add review popup
@@ -136,22 +129,14 @@ class App extends React.Component {
   backToDefaultProduct() {
     location.pathname = ('/');
     this.init(71697);
-    // this.setState({
-    //   product: this.state.products[0]
-    // }, async () => {
-    //   await this.getReviewsMeta();
-    //   this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
-    // })
   }
 
   getAllCurrentProductInfo(product) {
     this.setState({currentProduct: product})
   }
 
-
   // Add the product id to the outfit list if product hasn't been added yet
   addToOutfit(product) {
-    //localStorage.clear();
     console.log(localStorage);
     var outfit = {...this.state.outfit};
     if (outfit[product.id] || localStorage[product.id]) {
@@ -166,22 +151,6 @@ class App extends React.Component {
     }
   }
 
-  // addToOutfit(productId) {
-  //   //localStorage.clear();
-  //   console.log(localStorage);
-  //   var outfit = [...this.state.outfit];
-  //   if (outfit.includes(productId) || localStorage[productId]) {
-  //     alert('Product Already Added To Outfit!')
-  //   } else {
-  //   outfit.push(productId);
-  //   this.setState({outfit}, () => {
-  //     console.log('Current Outfit after adding: ', this.state.outfit);
-  //     localStorage.setItem(`${this.state.outfit}`, this.state.outfit);
-  //     console.log(localStorage);
-  //   });
-  //   }
-  // }
-
   // Remove the product id from the outfit list if the list already includes the product
   removeFromOutfit(productId) {
     var outfit = {...this.state.outfit};
@@ -192,16 +161,6 @@ class App extends React.Component {
       console.log('Local storage after removing: ', localStorage);
     });
   }
-
-  // removeFromOutfit(productId) {
-  //   var outfit = [...this.state.outfit];
-  //   outfit.splice(outfit.indexOf(productId), 1);
-  //   this.setState({outfit}, () => {
-  //     console.log('Current Outfit after removing: ', this.state.outfit);
-  //     localStorage.removeItem(`${productId}`);
-  //     console.log(localStorage);
-  //   });
-  // }
 
   // Track the interaction of clickable elements
   interaction(element, widget) {
@@ -222,10 +181,8 @@ class App extends React.Component {
           </div>
           <div className='container'>
             <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics} interaction={this.interaction}/>
-            {/* <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} outfit={this.state.outfit} addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} interaction={this.interaction} /> */}
             <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} outfit={this.state.outfit} addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} interaction={this.interaction} getAllCurrentProductInfo={this.getAllCurrentProductInfo.bind(this)} />
             <RelatedItems product={this.state.product} selectProduct={this.selectProduct.bind(this)} handleScrollToTop={this.handleScrollToTop.bind(this)} interaction={this.interaction} rating={this.state.rating}/>
-            {/* <Outfit product={this.state.product} outfit={this.state.outfit}  addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} interaction={this.interaction}/> */}
             <Outfit product={this.state.product} currentProduct={this.state.currentProduct} outfit={this.state.outfit}  addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} interaction={this.interaction}/>
             <QA product={this.state.product} interaction={this.interaction}/>
             <Reviews state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)} interaction={this.interaction}/>
