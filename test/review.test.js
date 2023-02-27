@@ -11,7 +11,6 @@ import Rating from '../client/src/components/reviews/Rating';
 import Product from '../client/src/components/reviews/Product';
 import {reviewsSort, getCharMap, searchReviews} from '../client/src/components/reviews/helper-revs';
 
-
 const server =setupServer(
   rest.get('/reviews', (req,res,ctx) => {
     return res(ctx.status(200));
@@ -63,8 +62,6 @@ describe('ReviewsEntry component Tests', () => {
     await waitFor(() => expect(queryByText("This review won't show again")).toBeDefined());
   })
   test('Find the helpfulness value', async () => {
-    //const alertMock = jest.spyOn(window, 'alert').mockImplementation();
-    //expect(alertMock).toHaveBeenCalledTimes(0)
     const review = render(<ReviewEntry review={mockData.reviews[1]} />);
     expect(review.getByText("(1)")).toBeInTheDocument();
   })
@@ -105,4 +102,3 @@ describe('Test all the helpers', () => {
     expect(searchReviews(mockData.reviews, "test").length).toBe(2);
   })
 })
-
