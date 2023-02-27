@@ -10,20 +10,16 @@ const app = express();
 app.use(compression());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: true, limit: '50mb'}));
-// app.use(express.json());
-// app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 const headers = {headers: {authorization: process.env.TOKEN}};
 const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
 
-// Routes //
+/* --------------------------------------- Product Info --------------------------------------- */
 
 // get all products
 app.get('/products', async (req, res) => {
   let url = `${root}/products?count=20`;
-  // const products = await axios.get(url, headers);
-  // res.status(200).json(products.data);
   axios.get(url, headers)
     .then((products) => {
       res.status(200).json(products.data);
@@ -34,7 +30,7 @@ app.get('/products', async (req, res) => {
     })
 })
 
-// product
+// get a product
 app.get('/products/:product_id', (req, res) => {
   let url = `${root}/products/${req.params.product_id}`;
   return axios.get(url, headers)
@@ -52,7 +48,7 @@ app.get('/products/:product_id/styles', async (req, res) => {
   res.status(200).json(styles.data);
 })
 
-/* ---- QA ---- */
+/* --------------------------------------- Q&A --------------------------------------- */
 
 // get questions
 app.get('/qa/questions/:product_id', (req, res) => {
@@ -110,12 +106,12 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
 })
 
 // report question
-// app.put('/qa/questions/:question_id/report', (req, res) => {
-//   let url = `${root}/qa/questions/${req.params.question_id}/helpful`;
-//   axios.put(url, {}, headers)
-//   .then((response) => res.status(204).json(response.data))
-//   .catch((err) => console.error(err))
-// })
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  let url = `${root}/qa/questions/${req.params.question_id}/helpful`;
+  axios.put(url, {}, headers)
+  .then((response) => res.status(204).json(response.data))
+  .catch((err) => console.error(err))
+})
 
 // report answer
 app.put('/qa/answers/:answer_id/report', (req, res) => {
@@ -128,12 +124,10 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
   })
 })
 
+/* --------------------------------------- Reviews --------------------------------------- */
 
-/* ---- Reviews ---- */
-
-// product reviews
+// get product reviews
 app.post('/reviews/:product_id', (req, res) => {
-  // console.log('reviews sort and count: ', req.body);
   let url = `${root}/reviews/?product_id=${req.params.product_id}&count=${req.body.count}`;
   return axios.get(url, headers)
     .then((results) => {
@@ -158,6 +152,7 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
   })
 })
 
+// report a review
 app.put('/reviews/:review_id/report', (req, res) => {
   let url =`${root}/reviews/${req.params.review_id}/report`;
   return axios.put(url, {}, headers)
@@ -170,7 +165,7 @@ app.put('/reviews/:review_id/report', (req, res) => {
     })
 })
 
-// add product reviews
+// post a review
 app.post('/addReview', (req, res) => {
   let url = `${root}/reviews`;
   const {review} = req.body;
@@ -178,7 +173,6 @@ app.post('/addReview', (req, res) => {
   for (let key in review.characteristics) {
     review.characteristics[key] = parseInt(review.characteristics[key]);
   }
-  //reviews.characteristics =newObj;
   console.log("after: ", review);
   return axios.post(url, req.body.review, headers)
     .then(() => {
@@ -206,7 +200,7 @@ app.post('/upload', (req, res) => {
     })
 })
 
-// product reviews meta
+// get product reviews meta
 app.get('/reviews/meta/:product_id', (req, res) => {
   let url = `${root}/reviews/meta?product_id=${req.params.product_id}`;
   return axios.get(url, headers)
@@ -219,25 +213,11 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     })
 })
 
+/* --------------------------------------- Related Products --------------------------------------- */
 
-// product
-// app.get('/products/:product_id', (req, res) => {
-//   let url = `${root}/products/${req.params.product_id}`;
-//   return axios.get(url, headers)
-//           .then(result => {
-//             res.status(200).json(result.data)})
-//             .catch(err => {
-//               console.log(err);
-//               res.status(500).json(err);
-//             })
-// });
-
-
-// related products
+// get related products
 app.get('/products/:product_id/related', async (req, res) => {
   let url = `${root}/products/${req.params.product_id}/related`;
-  // const relatedItems = await axios.get(url, headers);
-  // res.status(200).json(relatedItems.data);
   axios.get(url, headers)
   .then((items) => {
     res.status(200).json(items.data);
@@ -247,6 +227,8 @@ app.get('/products/:product_id/related', async (req, res) => {
     res.status(500).json(err);
   })
 })
+
+/* --------------------------------------- Other Interactions --------------------------------------- */
 
 // send interactions detail to API
 app.post('/interactions', (req, res) => {
@@ -264,6 +246,7 @@ app.post('/interactions', (req, res) => {
     })
 })
 
+// update url with current product id
 app.get('/:productId', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, '../client/dist') }, (err) => {
     if(err) {
@@ -272,7 +255,7 @@ app.get('/:productId', (req, res) => {
       console.log('Chang id');
     }
   })
-
 })
+
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening at Port: ${PORT}`));
