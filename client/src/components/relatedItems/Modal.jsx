@@ -4,33 +4,18 @@ import './modal.scss';
 import {MdDone} from 'react-icons/md';
 
  const Modal = (props) => {
- // console.log(props.mainRating);
   const mainRating = props.mainRating;
-
-  //console.log(props.comRating);
-
   const showHideClassName = props.show ? " modal display-block" : "modal display-none";
-
   const [curProduct, setCurProduct] = useState(props.mainProduct)
-  //console.log('curProduct', curProduct);
-
   const [comparedProduct, setComparedProduct] = useState(props.product);
-
   const [comRating, setComRating] = useState(props.comRating);
-
   const [result, setResult] = useState([]);
-  //console.log('comparedProduct', comparedProduct);
-
-
 
   useEffect(() => {
     setComRating(props.comRating);
     setComparedProduct(props.product);
     setResult(comparedValue(curProduct, props.product, mainRating, props.comRating));
   }, [props.product, props.comRating]);
-  //console.log('comparedProduct', comparedProduct);
-  //console.log('result', result);
-
 
   const comparedValue = (curProduct, comparedProduct, mainRating, comRating) => {
     var result = [];
@@ -58,10 +43,9 @@ import {MdDone} from 'react-icons/md';
   }
 
   const compareFabric = (curProduct, comparedProduct) => {
-    var result = {};
-    result.value = 'Cotton';
-    if (comparedProduct.length !== 0  && comparedProduct.features.length !== 0) {
-      //console.log(comparedProduct.features);
+   var result = {};
+   result.value = 'Cotton';
+   if (comparedProduct.length !== 0  && comparedProduct.features.length !== 0) {
     if (curProduct.features[0].value === '100% Cotton') {
       result.a = true;
     }
@@ -76,16 +60,16 @@ import {MdDone} from 'react-icons/md';
     }
     if (comparedProduct.length !== 0 && comparedProduct.features.length === 0) {
       result.b = false;
+    }
    }
-   
-  }
-    return result;
+   return result;
   }
 
   const comparedRating = (mainRating, comRating) => {
-    var result = {};
-    result.value = 'Better Rating';
-    if(mainRating > comRating) {
+   var result = {};
+   result.value = 'Better Rating';
+   
+   if(mainRating > comRating) {
       result.a = true;
       result.b = false;
     } 
@@ -97,7 +81,8 @@ import {MdDone} from 'react-icons/md';
       result.a = false;
       result.b = false;
     }
-    return result;
+    
+   return result;
   }
 
   return (
@@ -124,8 +109,6 @@ import {MdDone} from 'react-icons/md';
             )
           })}
         </table>
-
-       
       </section>
     </div>
   );
