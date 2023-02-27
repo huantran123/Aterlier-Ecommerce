@@ -100,7 +100,6 @@ class RelatedItemCard extends React.Component {
         this.props.handleScrollToTop();
       }
 
-
   render() {
     return (
       <div className="card pointer-cursor" >
