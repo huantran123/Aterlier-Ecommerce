@@ -16,17 +16,12 @@ const RelatedItemSlider = (props) => {
     if(slider.scrollLeft <= 50) {
       setShowLeft(false);
     }
-  //   setShowLeft(true);
-  //   console.log('sliderLLL', showLeft);
    }
 
   const slideRight = () => {
     var slider = document.getElementById('slider');
     slider.scrollLeft +=  150;
     setShowLeft(true);
-    // console.log('sliderLeft///', slider.scrollWidth)
-    // console.log('sliderLeft>>>>>', slider.clientWidth)
-    // console.log('sliderleft', slider.scrollLeft);
     if(slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
       setShowRight(false);
     }
@@ -42,34 +37,21 @@ const RelatedItemSlider = (props) => {
       return Object.keys(objOfProducts);
   }
 
-  
-
-
   const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
     setRelatedItems(uniqeRelatedProducts(props.products));
   }, [props.products]);
- 
 
-
-
-  
-  
   return (
-   
     <div id="main-slider-container">
-          {/* <MdChevronLeft size={38} className="slider-icon-left"  onClick={slideLeft} />     */}
       <MdChevronLeft size={38} className={showLeft ? "slider-icon-left" : "slider-icon-invisible"}  onClick={slideLeft} />  
       <div id='slider'>
-
-        { relatedItems.map((item, index) => {
+        {relatedItems.map((item, index) => {
           return (
-                  <RelatedItemCard product={item} key={index} mainProduct={props.curProduct}  mainRating={props.rating} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
-              )
-          
-           })}
-
+            <RelatedItemCard product={item} key={index} mainProduct={props.curProduct}  mainRating={props.rating} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
+          )
+        })}
       </div>
       <MdChevronRight size={38} className={showRight ? "slider-icon-right" : "slider-icon-invisible"}  onClick={slideRight} />
     </div>
