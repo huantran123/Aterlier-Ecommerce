@@ -2,20 +2,26 @@ import React, { useState, useEffect } from 'react';
 import Star from '../Star/Star.jsx';
 import {calculateRating, roundNearQtr} from '../../helpers.js';
 import { recommend } from './helper-revs.js';
+
 const Rating = (props) => {
   const [rating, setRating] = useState(props.rating);
 
   if (rating !== props.rating) {
     setRating(props.rating);
   }
+  
   const [reviewsMeta, setMeta] = useState(props.reviewsMeta);
+  
   if (reviewsMeta !== props.reviewsMeta) {
     setMeta(props.reviewsMeta);
   }
+  
   const recData = recommend(reviewsMeta.recommended);
+  
   const totalRating = Object.values(reviewsMeta.ratings).reduce((acc, n) => {
     return acc = acc + parseInt(n);
   }, 0)
+  
   const calculate = (key) => {
     if (reviewsMeta.ratings[key] === undefined) {
       return 0;
@@ -56,6 +62,5 @@ const Rating = (props) => {
     </div>
   )
 }
-
 
 export default Rating;
