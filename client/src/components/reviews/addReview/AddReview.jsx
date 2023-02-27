@@ -4,10 +4,11 @@ import StarRating from './StarRating.jsx';
 import ProductFactor from './ProductFactor.jsx';
 import { getCharMap } from '../helper-revs.js';
 import AlertMessage from './AlertMessage.jsx';
+
 const AddReview = (props) => {
   let emptyRev = {
     product_id: props.product.id,
-    rating:0,
+    rating: 0,
     summary: "",
     body: "",
     recommend: "",
@@ -16,23 +17,32 @@ const AddReview = (props) => {
     photos: [],
     characteristics: {}
   };
+  
   const [newRev, setRev] = useState(emptyRev)
+  
   if (newRev.product_id !== props.product.id) {
     setRev({...newRev, product_id: props.product.id})
   }
+  
   const [uploadShow, setUploadShow] = useState(false);
   const showOrHide = props.show ? "modal trans-bg display-block" : "modal trans-bg display-none";
+  
   const toggleUpload= () => {
     setUploadShow(!uploadShow);
   }
+  
   const handleUpload = (urls =>{
     setRev({...newRev, photos: urls});
   })
+  
   const getRating = (newRating) => {
     setRev({...newRev, rating: newRating});
   }
+  
   const [newFactors, setFactors] = useState({});
+  
   let originMap = getCharMap(props.chars);
+  
   const [factorMap, setMap] = useState({map: originMap});
 
   const getFactor = (newFactor) => {
@@ -50,14 +60,17 @@ const AddReview = (props) => {
   useEffect(() => {
     setRev({...newRev, characteristics: newFactors});
   }, [newFactors])
+  
   const [message, setMessage] = useState({message: '', className: ''});
 
   if (message.message !== '') {
     setTimeout(()=>{setMessage({message: '', className: ''});}, 3000);
   }
+  
   const toggleMessage = () => {
     setMessage({message:'', className: ''});
   }
+  
   const handleSubmit = (newReview)=> {
     let stopSubmit = false;
     let errMessage = ''
