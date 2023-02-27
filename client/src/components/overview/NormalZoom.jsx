@@ -4,9 +4,6 @@ import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
 class NormalZoom extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
   }
 
   next() {
