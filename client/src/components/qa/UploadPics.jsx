@@ -26,6 +26,7 @@ const UploadPics = (props) => {
         props.close();
       })
   }
+  
   const previewFile = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -33,6 +34,7 @@ const UploadPics = (props) => {
       setImages(images.concat(reader.result));
     }
   }
+  
   const handleChange = (file) => {
     setFiles(files.concat(file));
     previewFile(file);
