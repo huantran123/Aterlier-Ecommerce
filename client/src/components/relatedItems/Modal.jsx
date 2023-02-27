@@ -100,12 +100,12 @@ import {MdDone} from 'react-icons/md';
          {result.map((item, index) => {
             return (
               <thead key={index}>
-              <tr>
-              <th>{item.a ? <MdDone /> : null} </th>
-              <th id="features">{item.value}</th>
-              <th>{item.b ? <MdDone /> : null}</th>
-              </tr>
-            </thead>
+               <tr>
+               <th>{item.a ? <MdDone /> : null} </th>
+               <th id="features">{item.value}</th>
+               <th>{item.b ? <MdDone /> : null}</th>
+               </tr>
+             </thead>
             )
           })}
         </table>
