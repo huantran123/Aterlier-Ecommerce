@@ -14,7 +14,6 @@ class RelatedItems extends React.Component {
   componentDidMount() {
     axios.get(`/products/${this.props.product.id}/related`)
     .then((response) => {
-       //console.log('response////////////',  response.data);
       this.setState({
         items: response.data
       })
@@ -38,14 +37,11 @@ class RelatedItems extends React.Component {
   }
 
   render() {
-    // console.log('products//////', this.state.items)
-    // console.log('product....', this.props.product)
     return (
       <div className='widget'>
         <h4>Related Products</h4>
         <RelatedItemSlider products={this.state.items} curProduct={this.props.product} selectProduct={this.props.selectProduct} handleScrollToTop={this.props.handleScrollToTop} rating={this.props.rating} />
-        </div>
-
+      </div>
     )
   }
 }
