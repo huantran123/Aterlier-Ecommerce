@@ -78,8 +78,6 @@ const MaxZoomView = (props) => {
             position: 'absolute',
             width:'250%',
             height: 'auto'
-            // height:'1500px',
-            // objectFit:'contain',
           }}
         />
       </Container>
